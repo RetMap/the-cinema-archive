@@ -18,64 +18,152 @@
             --pastel-peach: #FFD1BA;
             --pastel-mint: #B2F2BB;
             --pastel-blue: #BAE1FF;
+            --pastel-lilac: #D9B2F2;
             --text-dark: #2d2d2d;
         }
 
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--bg-color);
-            margin: 0; padding: 40px;
             color: var(--text-dark);
+            margin: 0;
+            padding: 40px;
         }
 
-        .header-section { max-width: 950px; margin: 0 auto 60px auto; text-align: center; }
-        .title-wrapper { display: inline-block; position: relative; cursor: pointer; }
-        h1 { font-family: 'Bebas Neue', cursive; font-size: 5.5rem; letter-spacing: 4px; margin: 0; line-height: 1; }
-        
+        /* HEADER & CLAPPERBOARD EFFECT */
+        .header-section {
+            max-width: 950px;
+            margin: 0 auto 60px auto;
+            text-align: center;
+        }
+
+        .title-wrapper {
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+        }
+
+        h1 { 
+            font-family: 'Bebas Neue', cursive;
+            font-size: 5.5rem; 
+            letter-spacing: 4px;
+            margin: 0; 
+            color: #1a1a1a;
+            line-height: 1;
+        }
+
         .clapper-icon {
-            position: absolute; top: -30px; right: -60px; font-size: 3rem;
-            opacity: 0; transform: rotate(-25deg) scale(0.5);
+            position: absolute;
+            top: -30px;
+            right: -60px;
+            font-size: 3rem;
+            color: var(--text-dark);
+            opacity: 0;
+            transform: rotate(-25deg) scale(0.5);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .title-wrapper:hover .clapper-icon { opacity: 1; transform: rotate(0deg) scale(1); }
 
+        .title-wrapper:hover .clapper-icon {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+        }
+
+        .intro { 
+            font-size: 1.25rem; 
+            line-height: 1.8; 
+            color: #555;
+            margin-top: 25px;
+            font-weight: 300;
+        }
+
+        .intro strong {
+            color: #000;
+            border-bottom: 3px solid var(--pastel-peach);
+        }
+
+        /* DASHBOARD LAYOUT */
         .dashboard-container {
-            max-width: 1200px; margin: 0 auto;
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
         }
 
         .kpi-card {
-            background: var(--card-bg); padding: 30px; border-radius: 20px;
-            text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.03);
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.03);
             border-bottom: 8px solid #eee;
         }
 
-        .kpi-value { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; }
-        .kpi-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: #aaa; font-weight: 600; }
+        .kpi-value { 
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.8rem; 
+            display: block; 
+            color: #333;
+        }
+
+        .kpi-label { 
+            font-size: 0.75rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            color: #aaa; 
+            font-weight: 600;
+        }
 
         .chart-large {
-            grid-column: span 4; background: var(--card-bg);
-            padding: 40px; border-radius: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.03);
+            grid-column: span 4;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.03);
         }
 
-        /* Heatmap Styles */
-        .heatmap-container { overflow-x: auto; margin-top: 20px; }
+        h3 { 
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 25px; 
+            color: #444; 
+        }
+
+        /* HEATMAP */
+        .heatmap-scroll { overflow-x: auto; margin-top: 10px; }
         .heatmap {
             display: grid;
-            grid-template-columns: 150px repeat(11, 1fr); /* 1 Genre + 11 Decades */
-            gap: 5px; min-width: 900px;
+            grid-template-columns: 140px repeat(11, 1fr);
+            gap: 6px;
+            min-width: 900px;
         }
-        .heat-cell {
-            aspect-ratio: 1; border-radius: 6px; background: #f9f9f9;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 0.75rem; font-weight: 600; color: rgba(0,0,0,0.5);
-        }
-        .label-cell { font-size: 0.8rem; font-weight: 600; color: #777; display: flex; align-items: center; }
 
-        /* Loading State */
-        #status-message {
-            text-align: center; grid-column: span 4; padding: 20px;
-            font-weight: 600; color: #e67e22;
+        .heat-cell {
+            aspect-ratio: 1;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: #f9f9f9;
+            color: rgba(0,0,0,0.4);
+        }
+
+        .label-cell { 
+            font-size: 0.75rem; 
+            font-weight: 600; 
+            color: #888; 
+            display: flex; 
+            align-items: center; 
+        }
+
+        #loading-overlay {
+            grid-column: span 4;
+            text-align: center;
+            padding: 20px;
+            font-weight: bold;
+            color: #e67e22;
         }
     </style>
 </head>
@@ -86,58 +174,58 @@
         <h1>The Golden Era Explorer</h1>
         <i class="fa-solid fa-clapperboard clapper-icon"></i>
     </div>
-    <p style="margin-top:20px; color:#666;">Popcorn ready? Let's analyze the 1,000 greatest films ever made. ✨</p>
+    <p class="intro">
+        Grab your popcorn and dim the lights! 🍿 We’re going deep into the <strong>IMDb Top 1000</strong>. 
+        This is the ultimate "Director’s Cut" of movie history—a visual journey from the silent 
+        masterpieces of the 1920s to the neon blockbusters of today. Explore the trends, the peaks, and the 
+        genres that defined a century of storytelling. <strong>And... Action!</strong>
+    </p>
 </div>
 
 <div class="dashboard-container">
-    <div id="status-message">🎬 Pre-production: Loading your data...</div>
+    <div id="loading-overlay">🎥 Setting the stage... Loading data...</div>
 
     <div class="kpi-card" style="border-color: var(--pastel-peach);">
         <span class="kpi-value">7.95</span>
-        <span class="kpi-label">Avg Rating</span>
+        <span class="kpi-label">Critically Acclaimed</span>
     </div>
     <div class="kpi-card" style="border-color: var(--pastel-mint);">
         <span class="kpi-value">273.7M</span>
-        <span class="kpi-label">Total Votes</span>
+        <span class="kpi-label">Total "Tickets" (Votes)</span>
     </div>
     <div class="kpi-card" style="border-color: var(--pastel-blue);">
         <span class="kpi-value">Drama</span>
-        <span class="kpi-label">Top Genre</span>
+        <span class="kpi-label">Dominant Genre</span>
     </div>
     <div class="kpi-card" style="border-color: var(--pastel-lilac);">
         <span class="kpi-value">2010s</span>
-        <span class="kpi-label">Peak Era</span>
+        <span class="kpi-label">The Busiest Decade</span>
     </div>
 
     <div class="chart-large">
-        <h3>Decade vs. Genre Production</h3>
-        <div class="heatmap-container">
+        <h3>Live Genre Production Heatmap (Decades vs. Volume)</h3>
+        <div class="heatmap-scroll">
             <div id="dynamicHeatmap" class="heatmap"></div>
         </div>
     </div>
 </div>
 
 <script>
+    // Your specific Golden Era Pivot Link
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTDvnBokaAQLilxc2sIHSpUQxer__F6VoPhRS9OUM5D_P1OM5oTQsQvQutTzNxPxMulXvxV3rtwdmWE/pub?gid=118353248&single=true&output=csv';
 
     function init() {
-        console.log("Starting Data Fetch...");
         Papa.parse(CSV_URL, {
             download: true,
             header: true,
             skipEmptyLines: true,
             complete: function(results) {
-                console.log("Data Received:", results.data);
-                if (results.data.length > 0) {
-                    document.getElementById('status-message').style.display = 'none';
-                    renderHeatmap(results.data);
-                } else {
-                    document.getElementById('status-message').innerText = "❌ Error: The sheet returned no data.";
-                }
+                console.log("Data loaded successfully");
+                document.getElementById('loading-overlay').style.display = 'none';
+                renderHeatmap(results.data);
             },
             error: function(err) {
-                console.error("PapaParse Error:", err);
-                document.getElementById('status-message').innerText = "❌ Error: Could not connect to Google Sheets.";
+                document.getElementById('loading-overlay').innerText = "❌ Error loading film reels. Check the CSV link.";
             }
         });
     }
@@ -146,33 +234,34 @@
         const container = document.getElementById('dynamicHeatmap');
         const decades = ['1920', '1930', '1940', '1950', '1960', '1970', '1980', '1990', '2000', '2010', '2020'];
 
-        // 1. Add Header
-        let html = '<div class="label-cell">GENRE</div>';
-        decades.forEach(d => html += `<div class="label-cell">${d}s</div>`);
+        let heatmapHtml = '<div class="label-cell">GENRE / DECADE</div>';
+        decades.forEach(d => heatmapHtml += `<div class="label-cell">${d}s</div>`);
 
-        // 2. Add Rows
         data.forEach(row => {
-            // Find the genre name (it might be under different header names depending on the pivot)
-            const genre = row['Primary_Genre'] || row[''] || Object.values(row)[0];
-            
-            if (!genre || genre.includes('Total')) return; // Skip totals
+            // Get the first key of the row (which is the Genre column)
+            const rowKeys = Object.keys(row);
+            const genreName = row[rowKeys[0]];
 
-            html += `<div class="label-cell">${genre}</div>`;
+            // Filter out totals or empty rows
+            if (!genreName || genreName.includes('Total') || genreName === 'Decade') return;
+
+            heatmapHtml += `<div class="label-cell">${genreName}</div>`;
             
             decades.forEach(d => {
                 const count = parseInt(row[d]) || 0;
-                // Calculate pastel green intensity
-                const opacity = Math.min(count / 40, 1);
-                const bgColor = count > 0 ? `rgba(178, 242, 187, ${opacity + 0.1})` : '#fdfdfd';
+                // Calculate color intensity (Pastel Blue theme)
+                const opacity = Math.min(count / 50, 1); 
+                const color = count > 0 ? `rgba(186, 225, 255, ${opacity + 0.1})` : '#fdfdfd';
                 
-                html += `<div class="heat-cell" style="background: ${bgColor}">${count > 0 ? count : ''}</div>`;
+                heatmapHtml += `<div class="heat-cell" style="background: ${color}; border: 1px solid rgba(0,0,0,0.03)">
+                    ${count > 0 ? count : ''}
+                </div>`;
             });
         });
 
-        container.innerHTML = html;
+        container.innerHTML = heatmapHtml;
     }
 
-    // Run on load
     window.onload = init;
 </script>
 
